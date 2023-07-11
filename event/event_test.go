@@ -7,7 +7,7 @@ import (
 )
 
 type testListener struct {
-	data   interface{}
+	data   []byte
 	called bool
 }
 
@@ -22,7 +22,7 @@ func (l *testListener) SetData(data interface{}) {
 
 type testEvent struct {
 	key  string
-	data interface{}
+	data []byte
 }
 
 func (t *testEvent) GetKey() string {
