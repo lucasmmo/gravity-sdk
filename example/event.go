@@ -10,7 +10,7 @@ import (
 
 type Event struct {
 	key  string
-	data interface{}
+	data []byte
 }
 
 func (e *Event) GetKey() string {
@@ -29,7 +29,7 @@ type someStruct struct {
 func NewSomeStruct(dispatcher event.Dispatcher) *someStruct {
 	return &someStruct{dispatcher}
 }
-func (s *someStruct) Something(data interface{}) error {
+func (s *someStruct) Something(data []byte) error {
 	// Do something here
 	s.dispatcher.Dispatch(&Event{
 		key:  "some_event",
@@ -40,17 +40,17 @@ func (s *someStruct) Something(data interface{}) error {
 
 // Listener
 type listener struct {
-	data interface{}
+	data []byte
 }
 
 func NewListener() *listener {
 	return &listener{}
 }
 func (l *listener) Handler() error {
-	fmt.Println(l.data.(map[string]interface{})["gremio"])
+	fmt.Println(l.data.(map[string][]byte})["gremio"])
 	return nil
 }
-func (l *listener) SetData(data interface{}) {
+func (l *listener) SetData(data []byte) {
 	l.data = data
 }
 
