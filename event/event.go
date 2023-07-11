@@ -6,13 +6,13 @@ type Dispatcher interface {
 }
 
 type Listener interface {
-	SetData(data interface{})
+	SetData(data []byte)
 	Handler() error
 }
 
 type Event interface {
 	GetKey() string
-	GetData() interface{}
+	GetData() []byte
 }
 
 type dispatcher struct {
